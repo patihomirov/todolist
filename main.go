@@ -28,6 +28,8 @@ func main() {
 	//	router.HandleFunc("/clear",sClear)
 	//	router.HandleFunc("/list",sList)
 	//	router.HandleFunc("/feedback/{feedback}",sFeedback)
+	fmt.Print("Service is started at http://localhost:3000")
+	
 	log.Fatal(http.ListenAndServe(":3000", router))
 
 	//Удаление завершенных задач
@@ -36,7 +38,18 @@ func main() {
 }
 
 func sHead(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte(`Добро пожаловать!`))
+	w.Write([]byte(`Добро пожаловать!	
+	
+Справка:
+"/" - эта справочная страница)
+"/create/{taskname}" - создать задачу {taskname}
+"/changestatus/{taskid}/{taskstatus}" - изменить статус задачи {taskid} на {taskstatus}
+"/taskPrint" - распечатать список задач
+"/clearall" - удалить все задачи
+"/cleardone" - удалить задачи для которых {taskstatus} имеет значение "done"
+
+Разработчик PATihomirov
+	`))
 }
 
 //Создание задач
